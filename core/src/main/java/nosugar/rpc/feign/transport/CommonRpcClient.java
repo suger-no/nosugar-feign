@@ -27,7 +27,7 @@ public class CommonRpcClient implements RpcClient{
         Map<String, String> param = serializer.serialize(args);
         feignRequest.setParam(param);
         byte[] bytes = HttpUtil.request(feignRequest);
-        return serializer.deserialize(bytes, String.class);
+        return serializer.deserialize(bytes, feignRequest.getReturnType());
     }
 
 //    private RequestMethod parseAnnotations(Annotation[] annotations){

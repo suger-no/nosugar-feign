@@ -54,9 +54,17 @@ public class CommonJsonSerializer implements CommonSerializer{
 
 
     public Object deserialize(byte[] bytes, Type type) {
-        String s = new String(bytes);
-        Object obj = JSON.parseObject(s, new TypeReference(type) {});
-        return obj;
+        try{
+            String s = new String(bytes);
+            Object obj = JSON.parseObject(s, new TypeReference(type) {});
+            return obj;
+        }catch (Exception e) {
+//            e.printStackTrace();
+//            logger.error("序列化时出错");
+//            throw new SerializeException("序列化时发生错误");
+            return new String(bytes);
+        }
+
 
     }
 }
