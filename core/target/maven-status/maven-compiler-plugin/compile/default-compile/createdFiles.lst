@@ -1,0 +1,5 @@
+nosugar\rpc\feign\autoconfigure\FeignAutoConfiguration.class
+nosugar\rpc\feign\annotation\FeignClient.class
+nosugar\rpc\feign\FeignClientRegistrar.class
+nosugar\rpc\feign\annotation\EnableFeign.class
+nosugar\rpc\feign\aop\FeignCreator.class
