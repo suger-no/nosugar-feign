@@ -41,17 +41,26 @@ public class CommonJsonSerializer implements CommonSerializer{
     @Override
     public Object deserialize(byte[] bytes, Class<?> clazz) {
         try {
+            if(clazz.equals(String.class)){
+                return new String(bytes);
+            }
             Object obj =  objectMapper.readValue(bytes,clazz);
             return obj;
         } catch (IOException e) {
-//            e.printStackTrace();
-//            logger.error("序列化时出错");
-//            throw new SerializeException("序列化时发生错误");
-            return new String(bytes);
+            e.printStackTrace();
+            logger.error("序列化时出错");
+            throw new SerializeException("序列化时发生错误");
+
         }
 
     }
 
+    /**
+     * 别用
+     * @param bytes
+     * @param type
+     * @return
+     */
     @Deprecated
     public Object deserialize(byte[] bytes, Type type) {
         try{

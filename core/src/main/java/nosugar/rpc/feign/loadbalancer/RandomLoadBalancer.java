@@ -10,6 +10,11 @@ import java.util.Random;
 
 
 public class RandomLoadBalancer implements LoadBalancer{
+    /**
+     * 随机
+     * @param list
+     * @return
+     */
     @Override
     public ServiceInstance select(List<ServiceInstance> list) {
         return list.get(new Random().nextInt(list.size()));

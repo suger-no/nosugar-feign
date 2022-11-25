@@ -21,6 +21,7 @@ public class CommonRpcClient implements RpcClient{
         this.registerCenter=registerCenter;
         this.serializer = serializer;
     }
+
     @Override
     public Object sendRequest(Object[] args,
                               FeignRequest feignRequest){

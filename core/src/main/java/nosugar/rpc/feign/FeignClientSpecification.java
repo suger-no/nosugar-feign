@@ -5,6 +5,9 @@ import org.springframework.cloud.context.named.NamedContextFactory;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * 未使用
+ */
 class FeignClientSpecification implements NamedContextFactory.Specification {
 
 	private String name;

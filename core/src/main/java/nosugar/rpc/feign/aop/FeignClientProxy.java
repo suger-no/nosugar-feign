@@ -2,6 +2,7 @@ package nosugar.rpc.feign.aop;
 
 import nosugar.rpc.feign.annotation.FeignClient;
 import nosugar.rpc.feign.entity.FeignRequest;
+import nosugar.rpc.feign.entity.ServiceInfoCache;
 import nosugar.rpc.feign.transport.RpcClient;
 import nosugar.rpc.feign.utils.MethodUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.lang.reflect.Type;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 代理 feignClient 接口
@@ -18,6 +20,7 @@ import java.lang.reflect.Type;
 public class FeignClientProxy implements InvocationHandler {
     private String serviceName;
     private RpcClient rpcClient;
+    private Map<Method, ServiceInfoCache> cache = new ConcurrentHashMap<>();
 
     public static  <T> T getProxy(Class<T> clazz, RpcClient rpcClient){
         FeignClient annotation = clazz.getAnnotation(FeignClient.class);
@@ -46,8 +49,14 @@ public class FeignClientProxy implements InvocationHandler {
         }else if("toString".equals(methodName)){
             return this.toString();
         }else{
-            FeignRequest feignRequest = MethodUtil.getRealUrl(serviceName, method.getAnnotations());
-//            Type type = method.getGenericReturnType();
+            ServiceInfoCache serviceInfoCache = cache.get(method);
+            FeignRequest feignRequest = new FeignRequest();
+            if(serviceInfoCache!=null){
+                feignRequest.setPath(serviceInfoCache.getPath());
+                feignRequest.setMethod(serviceInfoCache.getMethod());
+            }
+//            FeignRequest feignRequest = MethodUtil.getRealUrl(serviceName, method.getAnnotations());
+
             feignRequest.setReturnType(method.getReturnType());
             Object result = rpcClient.sendRequest(args, feignRequest);
             return result;

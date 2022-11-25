@@ -30,6 +30,7 @@ public class FeignClientRegistrar implements ImportBeanDefinitionRegistrar, Reso
         registerFeignClients(metadata,registry);
     }
 
+
     private void registerFeignClients(AnnotationMetadata metadata, BeanDefinitionRegistry registry) {
         ClassPathScanningCandidateComponentProvider scanner = getScanner();
         scanner.setEnvironment(this.environment);

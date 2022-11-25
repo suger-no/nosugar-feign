@@ -36,6 +36,11 @@ public class FeignClientFactoryBean implements FactoryBean<Object>, Initializing
     @Autowired
     RpcClient rpcClient;
 
+    /**
+     * 获取FeignClient代理对象
+     * @return
+     * @throws Exception
+     */
     @Override
     public Object getObject() throws Exception {
         return FeignClientProxy.getProxy(type,applicationContext.getBean(RpcClient.class));

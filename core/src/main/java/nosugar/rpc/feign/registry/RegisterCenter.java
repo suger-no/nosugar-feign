@@ -8,6 +8,9 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 
 
+/**
+ * 注册中心
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,6 +19,11 @@ public class RegisterCenter {
 
     LoadBalancer loadBalancer;
 
+    /**
+     * 获取实例信息
+     * @param serviceId
+     * @return
+     */
     public ServiceInstance getInstance(String serviceId){
         return loadBalancer.select(discoveryClient.getInstances(serviceId));
     }
