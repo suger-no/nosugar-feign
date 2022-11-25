@@ -52,7 +52,7 @@ public class CommonJsonSerializer implements CommonSerializer{
 
     }
 
-
+    @Deprecated
     public Object deserialize(byte[] bytes, Type type) {
         try{
             String s = new String(bytes);

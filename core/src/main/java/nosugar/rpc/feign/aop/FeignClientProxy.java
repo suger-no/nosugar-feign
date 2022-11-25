@@ -47,8 +47,8 @@ public class FeignClientProxy implements InvocationHandler {
             return this.toString();
         }else{
             FeignRequest feignRequest = MethodUtil.getRealUrl(serviceName, method.getAnnotations());
-            Type type = method.getGenericReturnType();
-            feignRequest.setReturnType(type);
+//            Type type = method.getGenericReturnType();
+            feignRequest.setReturnType(method.getReturnType());
             Object result = rpcClient.sendRequest(args, feignRequest);
             return result;
         }

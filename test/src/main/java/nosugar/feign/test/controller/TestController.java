@@ -5,6 +5,7 @@ import nosugar.feign.test.service.FeignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -13,9 +14,13 @@ public class TestController {
     FeignService service;
     @GetMapping("/test")
     public String test(String s){
-        System.out.println(service.test());
+        List<String> test = service.test();
+        for (String s1 : test) {
+            System.out.println(s1);
+        }
+        System.out.println();
 
-        return service.test();
+        return "ok";
     }
 
     @PostMapping("/test2")

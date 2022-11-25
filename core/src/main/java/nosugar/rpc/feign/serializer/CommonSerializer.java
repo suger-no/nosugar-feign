@@ -7,6 +7,6 @@ public interface CommonSerializer {
     Map<String,String> serialize(Object object);
 
     Object deserialize(byte[] bytes,Class<?> clazz);
-
+    @Deprecated
     public Object deserialize(byte[] bytes, Type type);
 }

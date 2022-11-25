@@ -13,7 +13,16 @@ public class FeignRequest {
     private String host;
     private String path;
     private Integer port;
-    private Type returnType;
+
+    public Class getReturnType() {
+        return returnType;
+    }
+
+    public void setReturnType(Class returnType) {
+        this.returnType = returnType;
+    }
+
+    private Class returnType;
     private byte[] bytes;
 
     private RequestMethod method;
@@ -43,13 +52,6 @@ public class FeignRequest {
         this.port = port;
     }
 
-    public Type getReturnType() {
-        return returnType;
-    }
-
-    public void setReturnType(Type returnType) {
-        this.returnType = returnType;
-    }
 
     public byte[] getBytes() {
         return bytes;
