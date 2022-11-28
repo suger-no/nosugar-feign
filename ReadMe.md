@@ -1,6 +1,6 @@
 # nosugar-feign
 --持续更新中
-当前只支持String类型的传递，
+
 
 一个简单的服务调用，用于学习
 可以在springboot中使用
