@@ -55,7 +55,7 @@ public class FeignClientProxy implements InvocationHandler {
                 feignRequest.setPath(serviceInfoCache.getPath());
                 feignRequest.setMethod(serviceInfoCache.getMethod());
             }
-//            FeignRequest feignRequest = MethodUtil.getRealUrl(serviceName, method.getAnnotations());
+             feignRequest = MethodUtil.getRealUrl(serviceName, method.getAnnotations());
 
             feignRequest.setReturnType(method.getReturnType());
             Object result = rpcClient.sendRequest(args, feignRequest);
